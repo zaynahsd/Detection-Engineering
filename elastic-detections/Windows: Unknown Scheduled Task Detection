@@ -1,0 +1,1 @@
+((process.command_line.text:"*\/create*" AND process.executable.text:"\\schtasks\.exe") AND (NOT user.name:SYSTEM))
