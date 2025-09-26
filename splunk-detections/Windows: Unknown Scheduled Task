@@ -1,0 +1,4 @@
+index=wineventlog sourcetype=WinEventLog:Security ProcessName="*\\schtasks.exe" CommandLine="*create*"
+| where lower(coalesce(User, user))!="system"
+| table _time, host, user, CommandLine, ProcessName
+| sort - _time
