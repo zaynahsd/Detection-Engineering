@@ -1,0 +1,21 @@
+title: Scheduled Task Detection
+status: experimental
+description: Detecting unknown scheduled tasks.
+logsource:
+  category: process_creation
+  product: Windows
+detection:
+  selection:
+    CommandLine|contains: 
+        - '/create'
+    Image: 
+        - '\schtasks.exe'
+  filter_system:
+    User: 'SYSTEM'
+  condition: selection and not filter_system
+falsepositives: 
+    -Any regular scheduled tasks or created processes.
+level: medium 
+tags: 
+  - attack.t1053 
+  - T1053.005
